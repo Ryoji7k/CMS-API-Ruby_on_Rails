@@ -9,8 +9,9 @@
 `docker-compose run web rails new . --force --database=mysql --skip-bundle`  
 ※イメージ作成とホスト側にrailsの基盤を作ることがメインなので、コンテナがダウンしてても問題なし
 - database.yml を修正（パスワード設定をdocker-compose.ymlと揃える）
-- コンテナをビルド  
+- コンテナをビルド&起動  
 `docker-compose -f docker-compose.yml build`  
+`docker-compose -f docker-compose.yml up -d`  
 ※恐らくwebコンテナが落ちるので下記を実行
 - Rails6からwebpackerが必要になったのでインストール  
 `docker-compose run web rails webpacker:install`  
