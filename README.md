@@ -44,7 +44,12 @@ default: &default
 http://localhost:3000/
 
 ※ gem系のエラーが発生してコンテナが起動しなかった場合  
+- ログを確認  
+`docker logs コンテナID`
 - コンテナ・ネットワーク・ボリュームを停止・削除  
-`docker-compose down -v`  
-`docker-compose run web bundle install`  
-`docker-compose -f docker-compose.yml build`
+`docker-compose down -v`
+- bundle install を実行  
+`docker-compose run web bundle install`
+- コンテナをビルド&再起動  
+`docker-compose -f docker-compose.yml build`  
+`docker-compose -f docker-compose.yml up -d`
