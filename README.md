@@ -12,7 +12,10 @@
 ・ 既存のソースを利用する場合は「コンテナをビルド&起動」から開始
 ```
 - プロジェクト作成   
+通常モードの場合
 `docker-compose run web rails new . --force --database=mysql --skip-bundle`  
+APIモードの場合
+`docker-compose run web rails new . --api --force --database=mysql --skip-bundle`  
 ※ イメージ作成とホスト側にrailsの基盤を作ることがメインなので、コンテナがダウンしてても問題なし
 - database.yml を修正  
 ```
@@ -34,7 +37,7 @@ default: &default
 - 再度、コンテナを起動  
 `docker-compose -f docker-compose.yml up -d`
 - MySQL V8で認証プラグイン「caching_sha2_password」をロードできないため下記で回避  
-`docker exec -it dbのコンテナID bash`  
+`docker-compose exec db bash`  
 `mysql -uroot -ppassward`  
 `ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';`  
 `exit`
