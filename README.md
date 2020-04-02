@@ -56,3 +56,36 @@ http://localhost:3000/
 - コンテナをビルド&再起動  
 `docker-compose -f docker-compose.yml build`  
 `docker-compose -f docker-compose.yml up -d`
+
+## 基本操作まとめ
+※ コンテナの中で実行する想定  
+※ コンテナ外であれば `docker-compose exec web` を接頭に付ける
+- モデル作成  
+`rails g model モデル名（単数形） カラム名:型 カラム名:型`
+- コントローラー作成  
+`rails g controller コントローラー名（複数形）`
+- マイグレーション  
+`rake db:migrate`
+- ルーティング設定  
+```
+[config/routes.rb]
+※【controllers/階層_1/階層_2/コントローラー名.rb】の場合
+Rails.application.routes.draw do
+  namespace '階層_1' do
+    namespace '階層_2' do
+      resources :ルーティング名(コントローラー名に合わせる)
+    end
+  end
+end
+```
+- ルーティング設定確認  
+`rake routes`
+- railsコンソール操作  
+`rails c`  
+```
+例）データ挿入
+モデル名.create(カラム名:'データ')
+```
+- scaffoldを使用する場合  
+`rails g scaffold モデル名 カラム名1:データ型1 カラム名2:データ型 2`  
+`rake db:migrate`
